@@ -1,0 +1,85 @@
+/* CUSTOM SELECT */
+
+.select-wrapper {
+  --arrow-width: 3rem;
+  --border-radius: 1rem;
+
+  margin: 0 auto 2rem;
+  position: relative;
+  width: 15rem;
+  height: 2rem;
+  border-radius: var(--border-radius);
+  box-shadow: rgba(0 0 0 / 80%) 0 0.2rem 0.5rem;
+}
+
+.select-native, .select-custom {
+  position: absolute;
+  inset: 0;
+}
+
+.select-native {
+  appearance: none;
+  border-radius: var(--border-radius);
+}
+
+.select-custom{
+  display: none;
+  border-radius: var(--border-radius);
+}
+
+.select-custom input {
+  border: none;
+  outline: none;
+  height: 100%;
+  width: calc(100% - var(--arrow-width));
+  border-radius: var(--border-radius) 0 0 var(--border-radius);
+  margin: 0;
+  padding: 0 0 0 0.5rem;
+}
+
+.select-custom::after {
+  content: "";
+  border-radius: 0 var(--border-radius) var(--border-radius) 0;
+  position: absolute;
+  width: var(--arrow-width);
+  height: 100%;
+  top: 0;
+  right: 0;
+  background-image: url("../media/arrow-down.svg");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 60%;
+}
+
+.select-custom.opened {
+  .select-options {
+    display: block;
+  }
+
+  &:not(:has(.select-options:empty)) input {
+    border-radius: 1rem 0 0;
+  }
+}
+
+.select-options {
+  display: none;
+  width: calc(100% - var(--arrow-width));
+  border-radius: 0 0 var(--border-radius) var(--border-radius);
+  max-height: 10rem;
+  overflow: scroll;
+}
+
+.select-options li {
+  user-select: none;
+  padding: 0.5rem;
+}
+
+@media (hover: hover) {
+  .select-custom {
+    display: block;
+  }
+
+  .select-native:focus + .select-custom {
+    display: none;
+  }
+}
