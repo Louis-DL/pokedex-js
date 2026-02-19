@@ -1,4 +1,4 @@
-# pokedex-js v1.0
+# pokedex-js v1.2
 
 ## index.html
 
